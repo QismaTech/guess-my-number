@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Guess My Number</title>
+        <style>
+            html {
+              font-family: 'Gloria Hallelujah';
+              min-height: 100vh;
+              min-width: 100vh;
+              background: radial-gradient(#DFEFB4, #88B824);
+            }
+            body {
+              width: 100%;
+              max-width: 800px;
+              min-width: 30px;
+              min-height: 100vh;
+              margin: 0 auto;
+              justify-content: center;
+              
+            }
+            .lastResult {
+              color: #DFEFB4;
+              padding: 3px;
+              
+              padding-right: 260px;
+              text-align: center;
+            }
+            .guessSubmit{
+              font-family: 'Gloria Hallelujah';
+            }
+            .guessField{
+              font-family: 'Gloria Hallelujah';
+              background-color: #DFEFB4;
+            }
+            .resultParas{
+              padding-top: 15px;
+              padding-left: 240px;
+            }
+            .form{
+              padding-top: 50px;
+              padding-left: 225px;
+            }
+            .front-head{
+              padding-left: 250px;
+            }
+
+            .card-container{
+              display: grid;
+              grid-template-columns: repeat(10,auto);
+              grid-gap: 10px;
+              margin: 50px;
+              justify-content: center;
+              perspective: 500px;
+            }
+
+            .card{
+              border-radius: 10px;
+              height: 100px;
+              width: 71px;
+              position: relative;
+            }
+
+            .card-back{
+              background-color: #88B824;
+              transform: rotateY(180deg);
+            }
+
+            .card-front{
+              background-color: #DFEFB4;
+              position: relative;
+              transform: rotateY(0);
+            }
+
+            .card-face{
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              backface-visibility: hidden;
+              overflow: hidden;
+              border-radius: 10px;
+              transition: transform 300ms ease-in-out;
+            }
+
+            .gizmo{
+              width: 50px;
+              height: 50px;
+            }
+
+            .number-card{
+              font-family: 'Gloria Hallelujah';
+            }
+          </style>
+    </head>
+    <body>
+      <h1 class='front-head' style='Gloria Hallelujah'>GUESS MY NUMBER</h1>
+      <div class="form">
+        <label for="guessField">Enter your guess: </label><input type="text" id="guessField" class="guessField">
+        <input type="submit" value="Submit guess" class="guessSubmit">
+      </div>
+      <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+      </div>
+
+      <div class="card-container">
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">1</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">2</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+          <img class="gizmo" src="new_logo.png">
+        </div>
+        <div class="card-front card-face">
+          <p class="number-card">3</p>
+        </div></div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">4</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">5</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">6</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">7</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">8</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">9</p>
+          </div>
+        </div>
+        <div class="card"><div class="card-back card-face">
+          <img class="gizmo" src="new_logo.png">
+        </div>
+        <div class="card-front card-face">
+          <p class="number-card">10</p>
+        </div></div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">11</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">12</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">13</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">14</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">15</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">16</p>
+          </div>
+        </div>
+        <div class="card"><div class="card-back card-face">
+          <img class="gizmo" src="new_logo.png">
+        </div>
+        <div class="card-front card-face">
+          <p class="number-card">17</p>
+        </div></div>
+        <div class="card"><div class="card-back card-face">
+          <img class="gizmo" src="new_logo.png">
+        </div>
+        <div class="card-front card-face">
+          <p class="number-card">18</p>
+        </div></div>
+        <div class="card"><div class="card-back card-face">
+          <img class="gizmo" src="new_logo.png">
+        </div>
+        <div class="card-front card-face">
+          <p class="number-card">19</p>
+        </div></div>
+        <div class="card"><div class="card-back card-face">
+          <img class="gizmo" src="new_logo.png">
+        </div>
+        <div class="card-front card-face">
+          <p class="number-card">20</p>
+        </div></div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">21</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">22</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">23</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">24</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">25</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">26</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">27</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">28</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">29</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">30</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">31</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">32</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">33</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">34</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">35</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">36</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">37</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">38</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">39</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">40</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">41</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">42</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">43</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">44</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">45</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">46</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">47</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">48</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">49</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">50</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">51</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">52</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">53</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">54</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">55</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">56</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">57</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">58</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">59</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">60</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">61</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">62</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">63</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">64</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">65</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">66</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">67</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">68</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">69</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">70</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">71</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">72</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">73</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">74</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">75</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">76</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">77</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">78</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">79</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">80</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">81</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">82</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">83</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">84</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">85</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">86</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">87</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">88</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">89</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">90</p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">91</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">92</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">93</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">94</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">95</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">96</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">97</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">98</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">99</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img class="gizmo" src="new_logo.png">
+          </div>
+          <div class="card-front card-face">
+            <p class="number-card">100</p>
+          </div>
+        </div>
+      
+      </div>
+        
+    </body>
+    <script src="guess_my_number.js"></script>
+</html>
